@@ -12,14 +12,16 @@ import { Provider } from 'mobx-react';
 import { RootStore } from './stores/RootStore';
 import routes from './config/routes';
 import Index  from './pages/Index';
+import { UIStore } from './stores/UIStore';
 
 const rootElement = document.getElementById('root');
 const rootStore = new RootStore();
+const uiStore = new UIStore();
 
 const App = () => (
   <BrowserRouter>
-    <Provider store={rootStore}>
-      <Index {...RootStore}>
+    <Provider store={rootStore} uiStore={uiStore} >
+      <Index {...RootStore} {...uiStore}>
         {routes}
       </Index>
     </Provider>

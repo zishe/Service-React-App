@@ -6780,6 +6780,10 @@ mobx-logger@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/mobx-logger/-/mobx-logger-0.7.0.tgz#aba34f3fcb6bf24df7abd923035afc0c99b0932b"
 
+mobx-react-devtools@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/mobx-react-devtools/-/mobx-react-devtools-5.0.1.tgz#9473c85929b2fc0c95086430419028cebd96fb3b"
+
 mobx-react-router@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/mobx-react-router/-/mobx-react-router-4.0.4.tgz#b778618c84f16057f5ae9c09a4d364deade95fd8"

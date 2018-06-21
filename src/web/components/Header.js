@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import styled, { css } from 'styled-components';
-import { Typography, AppBar, Toolbar, IconButton, Button } from '@material-ui/core';
+import { Typography, AppBar, Toolbar, IconButton, Button, Badge } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+import { ShoppingCart } from './ShoppingCart';
 
 const MenuButton = styled(IconButton)`
   && {
@@ -37,7 +39,7 @@ const SearchBar = styled.div`
     background: rgba(255, 255, 255, 0.15);
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     margin-left: 8px;
-    margin-right: 16px;
+    margin-right: 46px;
     border-radius: 2px;
   }
 `
@@ -86,6 +88,7 @@ const AutocompleteInput = styled.input`
   }
 `
 
+@inject('store')
 @observer
 export class Header extends React.Component {
 
@@ -98,10 +101,6 @@ export class Header extends React.Component {
 
   }
   render() {
-    // const {
-    //   // categories
-    // } = this.props;
-
     return (
       <Wrapper>
         <StyledBar position="static">
@@ -110,7 +109,7 @@ export class Header extends React.Component {
               <MenuIcon />
             </MenuButton>
             <HeadTitle variant="title" color="inherit">
-              Title
+              Service
             </HeadTitle>
             <SearchBar>
               <SearchIconArea>
@@ -122,6 +121,12 @@ export class Header extends React.Component {
                 />
               </AutocompleteArea>
             </SearchBar>
+            <Badge
+              style={{marginRight: 10}}
+              badgeContent={this.props.store.shoppingCartStore.size}
+              color="primary">
+              <ShoppingCart />
+            </Badge>
             <Button color="inherit">Login</Button>
           </Toolbar>
         </StyledBar>

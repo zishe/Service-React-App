@@ -7,18 +7,17 @@ export class CategoryStore {
   @observable isLoading = true;
 
   constructor(rootStore) {
-    this.rootStore = rootStore
-    this.loadCategories()
+    this.rootStore = rootStore;
   }
 
   @action
-  loadCategories = async () => {
-    const categories = await API.getAll('categories')
+  fetchAll = async () => {
+    const categories = await API.getAll('categories');
 
     runInAction('Load Categories', () => {
-      console.log(categories)
-      this.categories = categories
-      this.isLoading = false
+      console.log(categories);
+      this.categories = categories;
+      this.isLoading = false;
     });
   }
 }

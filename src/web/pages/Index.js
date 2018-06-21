@@ -5,6 +5,7 @@ import { Provider } from 'mobx-react'
 import routes from '../config/routes'
 import { Header } from '../components/Header';
 import { CssBaseline } from '@material-ui/core';
+// import DevTools from 'mobx-react-devtools';
 // import NotFound from './NotFound'
 
 class Index extends React.Component {
@@ -21,6 +22,7 @@ class Index extends React.Component {
             })}
             {/* <Route component={NotFound}/> */}
           </Switch>
+          {/* <DevTools /> */}
         </Fragment>
       </Provider>
     )

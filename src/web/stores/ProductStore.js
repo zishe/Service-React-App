@@ -7,18 +7,28 @@ export class ProductStore {
   @observable isLoading = true;
 
   constructor(rootStore) {
-    this.rootStore = rootStore
-    this.loadProducts()
+    this.rootStore = rootStore;
   }
 
   @action
-  loadProducts = async () => {
-    const products = await API.getAll('products')
+  fetchAll = async () => {
+    const products = await API.getAll('products');
 
-    runInAction('Load products', () => {
-      console.log(products)
-      this.products = products
-      this.isLoading = false
+    runInAction('Load all products', () => {
+      console.log(products);
+      this.products = products;
+      this.isLoading = false;
+    });
+  }
+
+  @action
+  fetchPopular = async () => {
+    const products = await API.getAll('products');
+
+    runInAction('Load all products', () => {
+      console.log(products);
+      this.products = products;
+      this.isLoading = false;
     });
   }
 }

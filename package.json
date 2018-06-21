@@ -48,6 +48,7 @@
     "jest": "23.1.0",
     "json-loader": "^0.5.7",
     "mobx-logger": "^0.7.0",
+    "mobx-react-devtools": "^5.0.1",
     "react-native-cli": "^2.0.1",
     "react-native-scripts": "^1.14.0",
     "react-test-renderer": "16.4.1",
