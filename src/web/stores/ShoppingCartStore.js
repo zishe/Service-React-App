@@ -5,6 +5,7 @@ export class ShoppingCartStore {
 
   @observable products = [];
   @observable paid = true;
+  @observable modifyingProduct = null;
 
   constructor(rootStore) {
     this.rootStore = rootStore;

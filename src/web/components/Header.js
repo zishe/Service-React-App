@@ -6,6 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import { ShoppingCart } from './ShoppingCart';
+import ProductModification from './ProductModification';
 
 const MenuButton = styled(IconButton)`
   && {

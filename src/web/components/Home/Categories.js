@@ -49,7 +49,7 @@ export default class Categories extends Component {
       <Container>
         <CategoryPanel cols={4}>
           {categories.map((category) =>
-            <Item key={category.image}>
+            <Item key={category.id}>
               <img src={category.image} alt={category.name} />
               <GridListTileBar
                 title={category.name}

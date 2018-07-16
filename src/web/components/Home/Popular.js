@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { Card, CardContent, Typography, CardMedia, CardActions, IconButton } from '@material-ui/core';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import ShareIcon from '@material-ui/icons/Share';
+import Edit from '@material-ui/icons/Edit';
 import AddCircle from '@material-ui/icons/AddCircle';
+import ProductModification from '../ProductModification';
 
 const Container = styled.div`
   && {
@@ -47,6 +49,7 @@ const AddButton = styled(IconButton)`
 `
 
 @inject('store')
+@inject('uiStore')
 @observer
 export default class Products extends Component {
   UNSAFE_componentWillMount () {
@@ -61,7 +64,7 @@ export default class Products extends Component {
   }
 
   render() {
-    const { products } = this.props.store.productStore;
+    const { products, modifyingProduct } = this.props.store.productStore;
 
     return (
       <Container>
@@ -87,6 +90,17 @@ export default class Products extends Component {
               {/* <IconButton aria-label="Share">
                 <ShareIcon />
               </IconButton> */}
+              <AddButton aria-label="Изменить и добавить" align="left">
+                <Edit
+                  color="primary"
+                  style={{ fontSize: 48 }}
+                  onClick={() => {
+                    console.log('fdss');
+                    this.props.uiStore.productModificationOpen = true;
+                    this.props.store.productStore.setModifyingProduct(product.id);
+                  }}
+                />
+              </AddButton>
               <AddButton aria-label="Добавить в корзину" align="left">
                 <AddCircle
                   color="primary"

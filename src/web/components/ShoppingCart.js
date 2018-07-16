@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import { Dialog, Button, DialogTitle, DialogContentText, DialogContent, withMobileDialog, DialogActions } from '@material-ui/core';
+import { Dialog, Button, DialogTitle, DialogContentText, DialogContent, withMobileDialog, DialogActions, List, ListItem, Avatar, ListItemText } from '@material-ui/core';
 import styled from 'styled-components';
 import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 
@@ -15,16 +15,31 @@ const Container = styled.div`
   }
 `;
 
+const CartTitle = styled(DialogTitle)`
+  && {
+    min-width: 600px;
+  }
+`
+
+const ItemPreview = styled(Avatar)`
+  && {
+    height: 80px;
+    width: 80px;
+    border-radius: 0;
+  }
+`;
+
+
 @inject('uiStore')
 @inject('store')
 @observer
 export class ShoppingCart extends Component {
 
-  handleClickOpen = () => {
+  handleDialogOpen = () => {
     this.props.uiStore.shoppingCartOpen = true;
   }
 
-  handleClose = () => {
+  handleDialogClose = () => {
     this.props.uiStore.shoppingCartOpen = false;
   }
 
@@ -37,29 +52,37 @@ export class ShoppingCart extends Component {
           <Button
             color="inherit"
             style={{padding: 0, minWidth: 55}}
-            onClick={this.handleClickOpen}
+            onClick={this.handleDialogOpen}
           >
             <ShoppingBasket />
           </Button>
         <Dialog
           fullScreen={fullScreen}
           open={uiStore.shoppingCartOpen}
-          onClose={this.handleClose}
+          onClose={this.handleDialogClose}
           aria-labelledby="responsive-dialog-title"
         >
-          <DialogTitle id="responsive-dialog-title">{"Use Google's location service?"}</DialogTitle>
+          <CartTitle id="responsive-dialog-title">
+            Заявка
+          </CartTitle>
           <DialogContent>
-            <DialogContentText>
-              Let Google help apps determine location. This means sending anonymous location data to
-              Google, even when no apps are running.
-            </DialogContentText>
+          <List>
+            {store.shoppingCartStore.products.map((item) => {
+              return <ListItem key={item.id}>
+                <ItemPreview>
+                  <img src={item.image} alt={item.name} />
+                </ItemPreview>
+              <ListItemText primary={item.name} secondary="" />
+            </ListItem>;
+            })}
+          </List>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Disagree
+            <Button onClick={this.handleDialogClose} color="primary">
+              Вернуться
             </Button>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
-              Agree
+            <Button onClick={this.handleDialogClose} color="primary" autoFocus>
+              Продолжить
             </Button>
           </DialogActions>
         </Dialog>
