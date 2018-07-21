@@ -17,9 +17,9 @@ const Container = styled.div`
 
 const CartTitle = styled(DialogTitle)`
   && {
-    min-width: 600px;
+    /* min-width: 600px; */
   }
-`
+`;
 
 const ItemPreview = styled(Avatar)`
   && {

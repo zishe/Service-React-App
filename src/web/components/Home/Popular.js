@@ -6,7 +6,7 @@ import { Card, CardContent, Typography, CardMedia, CardActions, IconButton } fro
 // import ShareIcon from '@material-ui/icons/Share';
 import Edit from '@material-ui/icons/Edit';
 import AddCircle from '@material-ui/icons/AddCircle';
-import ProductModification from '../ProductModification';
+import ProductModification from '../Modification/ProductModification';
 
 const Container = styled.div`
   && {
