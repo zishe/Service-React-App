@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import Select from 'react-select';
-import { Typography } from '../../../../node_modules/@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 // const Container = styled.div`
 //   && {
@@ -38,23 +38,22 @@ export default class IngredientTypeSelect extends Component {
   }
 
   handleChange = (selectedOption) => {
+    console.log('selectedOption');
     console.log(selectedOption);
-
-    // this.props.store.productStore.setModifyingProductData({ingredientType: value})
+    this.props.store.productStore.modificationData[this.props.ingredient.id] = { selected: selectedOption }
   }
 
   render() {
     const { ingredient } = this.props;
     return (
       <IngredientType>
-        {/* <Label htmlFor="age-simple">Тип</Label> */}
         <SelectIngredient
           required="false"
           placeholder={"Тип"}
           noResultsText="Пусто"
-          value={this.props.store.productStore ? this.props.store.productStore.modificationData.ingredientType : null}
+          value={this.props.store.productStore?.modificationData[ingredient.id]?.selected}
           onChange={this.handleChange}
-          options={ingredient.ingredientTypes.map((x) => { return {value: x.id, label: x.name } })}
+          options={ingredient.ingredientTypes.map((x) => { return { value: x.id, label: x.name } })}
         >
         </SelectIngredient>
       </IngredientType>

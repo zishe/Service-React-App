@@ -1,4 +1,4 @@
-import { observable, action, runInAction } from 'mobx';
+import { observable, action, runInAction, reaction } from 'mobx';
 import { API } from '../Api';
 
 export class ProductStore {
@@ -10,6 +10,14 @@ export class ProductStore {
 
   constructor(rootStore) {
     this.rootStore = rootStore;
+    reaction(() => this.modifyingProduct, value => { return this.productChanged(value) })
+  }
+
+  productChanged = (value) => {
+    // console.log('productChanged');
+    // console.log(value);
+
+    this.modificationData = {}
   }
 
   @action
@@ -52,7 +60,7 @@ export class ProductStore {
 
   @action
   setModifyingProductData = (obj) => {
-    console.log(obj);
+    // console.log(obj);
 
     Object.keys(obj).forEach((attr) => {
       console.log(attr);

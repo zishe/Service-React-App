@@ -4,10 +4,10 @@ import Categories from './Home/Categories';
 import Products from './Home/Popular';
 import ProductModification from './Modification/ProductModification';
 import { isNullOrUndefined } from 'util';
-import styled from '../../../node_modules/styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
-  && * {
+  && input, select {
     font-family: 'Roboto';
   }
 `;

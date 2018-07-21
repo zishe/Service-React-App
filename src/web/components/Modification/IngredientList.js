@@ -5,11 +5,15 @@ import styled from 'styled-components';
 import IngredientTypeSelect from './IngredientTypeSelect';
 import Select from 'react-select';
 import makeAnimated from 'react-select/lib/animated';
+import { Typography } from '@material-ui/core';
 
 
 const Ingredients = styled.div`
   && {
     width: 650px;
+  }
+  * {
+    font-family: 'Roboto' !important;
   }
 `;
 
@@ -27,7 +31,7 @@ const Ingredient = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    height: 60px;
+    height: 70px;
     overflow: visible;
   }
 `;
@@ -42,9 +46,21 @@ const Tags = styled(Select)`
   }
 `;
 
-const IngredientName = styled.div`
+const IngredientName = styled(Typography)`
   && {
     flex: 1;
+  }
+`;
+
+const Option = styled(Typography)`
+  && {
+
+  }
+`;
+
+const TypePlaceholder = styled(Typography)`
+  && {
+
   }
 `;
 
@@ -55,9 +71,21 @@ export class IngredientList extends Component {
     product: PropTypes.object
   }
 
-  handleChangeTags = (tags) => {
+  handleChangeTags = (ingredient, tags) => {
     console.log(tags);
+    this.props.store.productStore.modificationData[ingredient.id] = { selectedTags: tags }
+  }
 
+  renderOption = (option) => {
+    return (
+      <Option>
+        {option.label}
+      </Option>
+    );
+  }
+
+  renderValue = (option) => {
+    return <TypePlaceholder>{option.label}</TypePlaceholder>;
   }
 
   render() {
@@ -67,7 +95,9 @@ export class IngredientList extends Component {
     return (
       <Ingredients>
         {product.ingredients && product.ingredients.map((ingredient) => {
-          // console.log('ingredient.tags');
+          // const selected = Object.keys(store.productStore.modificationData).indexOf(ingredient.id) >= 0
+          // console.log('ingredient selected ');
+          // console.log(selected);
           // console.log(ingredient.tags.map((x) => { return {value: x.id, label: x.name } }));
 
           return (
@@ -77,12 +107,13 @@ export class IngredientList extends Component {
               </IngredientName>
               <IngredientType ingredient={ingredient} />
               <Tags
-                value={store.productStore.modificationData.selectedTags}
-                onChange={this.handleChangeTags}
+                value={store.productStore.modificationData[ingredient.id]?.selectedTags}
+                onChange={selectedItems => this.handleChangeTags(ingredient, selectedItems)}
                 placeholder="Другое"
                 isMulti
-                options={ingredient.tags.map((x) => { return {value: x.id, label: x.name } })}
+                options={ingredient.tags.map((x) => { return { value: x.id, label: x.name } })}
                 noResultsText="Пусто"
+                valueRenderer={this.renderValue}
               />
             </Ingredient>
           );

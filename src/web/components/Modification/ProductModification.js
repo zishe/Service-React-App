@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 import { Dialog, Button, DialogTitle, DialogContent, DialogActions, FormControl, InputLabel, Input, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import { IngredientList } from './IngredientList';
-import { ModificationForm } from './ModificationForm';
+import { ModificationNote } from './ModificationNote';
 
 const Container = styled.div`
   && {
@@ -41,7 +41,7 @@ const ItemPreview = styled.div`
   }
 `;
 
-const WeightHelpText = styled.div`
+const WeightHelpText = styled(Typography)`
   && {
     font-size: 14px;
   }
@@ -63,6 +63,7 @@ const ProductImage = styled.img`
 const IngredientsTitle = styled(Typography)`
   && {
     margin-top: 65px;
+    font-family: 'Roboto';
   }
 `;
 
@@ -99,6 +100,15 @@ export default class ProductModification extends Component {
     this.props.store.productStore.setModifyingProductData({servingWeight: e.target.value})
   }
 
+  handleDialogSubmit = () => {
+    // this.props.store.productStore.setModifyingProductData({servingWeight: e.target.value})
+    this.props.store.shoppingCartStore.addProduct(
+      this.props.store.productStore.modifyingProduct,
+      this.props.store.productStore.modificationData
+    )
+    this.handleDialogClose()
+  }
+
 
   render() {
     const { uiStore, store, fullScreen } = this.props;
@@ -110,8 +120,7 @@ export default class ProductModification extends Component {
     return (product &&
       <Container>
         <ModificationDialog
-          // contentStyle={ styles.dialogContent }
-          contentStyle={{width: 700}}
+          // contentStyle={{width: 700}}
           fullScreen={fullScreen}
           open={uiStore.productModificationOpen}
           onClose={this.handleDialogClose}
@@ -139,9 +148,10 @@ export default class ProductModification extends Component {
                 </WeightHelpText>
               </FormControl>
               <IngredientsTitle variant="title" gutterBottom >
-                  Индгредиенты:
+                  Ингредиенты:
               </IngredientsTitle>
               <IngredientList product={product}/>
+              <ModificationNote />
             </Form>
           </ProductData>
 
@@ -149,8 +159,8 @@ export default class ProductModification extends Component {
             <Button onClick={this.handleDialogClose} color="primary">
               Вернуться
             </Button>
-            <Button onClick={this.handleDialogClose} color="primary" autoFocus>
-              Продолжить
+            <Button onClick={this.handleDialogSubmit} color="primary" autoFocus>
+              Добавить
             </Button>
           </DialogActions>
         </ModificationDialog>

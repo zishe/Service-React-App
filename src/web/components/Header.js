@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { Typography, AppBar, Toolbar, IconButton, Button, Badge } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import { ShoppingCart } from './ShoppingCart';
+import { ShoppingCart } from './ShoppingCart/ShoppingCart';
 
 const MenuButton = styled(IconButton)`
   && {

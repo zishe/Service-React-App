@@ -1,5 +1,4 @@
 import { observable, action, runInAction, computed } from 'mobx';
-import { API } from '../Api';
 
 export class ShoppingCartStore {
 
@@ -15,18 +14,17 @@ export class ShoppingCartStore {
   //   return this.products.filter(item => item.id === product.id).length;
   // }
 
-
   @computed get size() {
     return this.products.length;
   }
 
   @action
-  addProduct = (product) => {
-    this.products.push(product);
+  addProduct = (product, modification) => {
+    this.products.push({ product: product, modification: modification });
   }
 
   @action
   removeProduct = (product) => {
-    this.products = this.products.filter(item => item !== product)
+    this.products = this.products.filter(item => item.product !== product)
   }
 }

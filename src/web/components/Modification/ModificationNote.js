@@ -1,0 +1,35 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { observer, inject } from 'mobx-react';
+import { TextField } from '@material-ui/core';
+
+@inject('store')
+@observer
+export class ModificationNote extends Component {
+  static propTypes = {
+
+  }
+
+  render() {
+    return (
+      <div>
+        <TextField
+          // multiLine={true}
+          rows={2}
+          id="full-width"
+          label="Комментарий"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          // placeholder="Получше прожарить!"
+          helperText="Получше прожарить!"
+          fullWidth
+          margin="normal"
+          value={this.props.store.productStore.modificationData.Note}
+        />
+      </div>
+    )
+  }
+}
+
+export default ModificationNote

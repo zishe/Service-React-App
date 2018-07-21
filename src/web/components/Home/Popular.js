@@ -5,8 +5,7 @@ import { Card, CardContent, Typography, CardMedia, CardActions, IconButton } fro
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import ShareIcon from '@material-ui/icons/Share';
 import Edit from '@material-ui/icons/Edit';
-import AddCircle from '@material-ui/icons/AddCircle';
-import ProductModification from '../Modification/ProductModification';
+  import AddCircle from '@material-ui/icons/AddCircle';
 
 const Container = styled.div`
   && {
@@ -57,7 +56,15 @@ export default class Products extends Component {
   }
 
   inCart = (product) => {
-    const count = this.props.store.shoppingCartStore.products.filter(item => item.id === product.id).length;
+    console.log('how many products?');
+    console.log(this.props.store.shoppingCartStore.products);
+
+    console.log(this.props.store.shoppingCartStore.products.map(obj => obj.product));
+
+    const count = this.props.store.shoppingCartStore.products
+                      ?.map(obj => obj.product)
+                      ?.filter(item => item.id === product?.id)
+                      ?.length;
     if (count > 0) {
       return `${count} в Конзине`;
     }
