@@ -73,7 +73,7 @@ export class IngredientList extends Component {
 
   handleChangeTags = (ingredient, tags) => {
     console.log(tags);
-    this.props.store.productStore.modificationData[ingredient.id] = { selectedTags: tags }
+    this.props.store.productStore.ingredientsModification[ingredient.id] = { tags: tags }
   }
 
   renderOption = (option) => {
@@ -95,7 +95,7 @@ export class IngredientList extends Component {
     return (
       <Ingredients>
         {product.ingredients && product.ingredients.map((ingredient) => {
-          // const selected = Object.keys(store.productStore.modificationData).indexOf(ingredient.id) >= 0
+          // const selected = Object.keys(store.productStore.ingredientsModification).indexOf(ingredient.id) >= 0
           // console.log('ingredient selected ');
           // console.log(selected);
           // console.log(ingredient.tags.map((x) => { return {value: x.id, label: x.name } }));
@@ -107,7 +107,7 @@ export class IngredientList extends Component {
               </IngredientName>
               <IngredientType ingredient={ingredient} />
               <Tags
-                value={store.productStore.modificationData[ingredient.id]?.selectedTags}
+                value={store.productStore.ingredientsModification[ingredient.id]?.tags}
                 onChange={selectedItems => this.handleChangeTags(ingredient, selectedItems)}
                 placeholder="Другое"
                 isMulti

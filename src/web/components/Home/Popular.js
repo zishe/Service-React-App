@@ -56,10 +56,7 @@ export default class Products extends Component {
   }
 
   inCart = (product) => {
-    console.log('how many products?');
-    console.log(this.props.store.shoppingCartStore.products);
-
-    console.log(this.props.store.shoppingCartStore.products.map(obj => obj.product));
+  // console.log(this.props.store.shoppingCartStore.products);
 
     const count = this.props.store.shoppingCartStore.products
                       ?.map(obj => obj.product)

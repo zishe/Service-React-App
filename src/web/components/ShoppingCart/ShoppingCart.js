@@ -43,6 +43,7 @@ const OpenDialogButton = styled(Button)`
 
 const CartContent = styled(DialogContent)`
   && {
+    flex: none;
   }
 `;
 

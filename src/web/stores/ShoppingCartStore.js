@@ -19,8 +19,12 @@ export class ShoppingCartStore {
   }
 
   @action
-  addProduct = (product, modification) => {
-    this.products.push({ product: product, modification: modification });
+  addProduct = (product, modificationData, ingredientsModification) => {
+    this.products.push({
+      product: product,
+      modificationData: modificationData,
+      ingredientsModification: ingredientsModification
+    });
   }
 
   @action

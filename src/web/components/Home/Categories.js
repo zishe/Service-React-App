@@ -14,7 +14,7 @@ const Container = styled.div`
   flex-wrap: 'wrap';
   justify-content: 'space-around';
   overflow: 'hidden';
-  background-color: #eee;
+  /* background-color: #eee; */
   /* padding-bottom: 40px; */
 `;
 
@@ -23,11 +23,12 @@ const CategoryPanel = styled(GridList)`
   transform: 'translateZ(0)';
 `;
 
-const padding = 10;
+const padding = 15;
 const Item = styled(GridListTile)`
   && {
     width: calc(25% -15px) !important;
-    height: auto !important;
+    cursor: pointer;
+    /* height: auto !important; */
   }
   padding: ${padding}px 0 ${padding}px ${padding}px !important;
   &:last-child {
@@ -47,7 +48,7 @@ export default class Categories extends Component {
 
     return (
       <Container>
-        <CategoryPanel cols={4}>
+        <CategoryPanel cols={5}>
           {categories.map((category) =>
             <Item key={category.id}>
               <img src={category.image} alt={category.name} />

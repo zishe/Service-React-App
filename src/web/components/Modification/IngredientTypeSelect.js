@@ -40,7 +40,7 @@ export default class IngredientTypeSelect extends Component {
   handleChange = (selectedOption) => {
     console.log('selectedOption');
     console.log(selectedOption);
-    this.props.store.productStore.modificationData[this.props.ingredient.id] = { selected: selectedOption }
+    this.props.store.productStore.ingredientsModification[this.props.ingredient.id] = { selected: selectedOption }
   }
 
   render() {
@@ -51,7 +51,7 @@ export default class IngredientTypeSelect extends Component {
           required="false"
           placeholder={"Тип"}
           noResultsText="Пусто"
-          value={this.props.store.productStore?.modificationData[ingredient.id]?.selected}
+          value={this.props.store.productStore?.ingredientsModification[ingredient.id]?.selected}
           onChange={this.handleChange}
           options={ingredient.ingredientTypes.map((x) => { return { value: x.id, label: x.name } })}
         >

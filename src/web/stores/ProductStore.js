@@ -6,6 +6,7 @@ export class ProductStore {
   @observable products = [];
   @observable modifyingProduct = {};
   @observable modificationData = {};
+  @observable ingredientsModification = {};
   @observable isLoading = true;
 
   constructor(rootStore) {
@@ -14,10 +15,11 @@ export class ProductStore {
   }
 
   productChanged = (value) => {
-    // console.log('productChanged');
-    // console.log(value);
+    console.log('productChanged');
+    console.log(value);
 
     this.modificationData = {}
+    this.ingredientsModification = {}
   }
 
   @action

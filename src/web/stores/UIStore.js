@@ -2,7 +2,7 @@ import { observable } from "mobx";
 
 
 export class UIStore {
-  @observable shoppingCartOpen = false;
+  @observable shoppingCartOpen = true;
   @observable productModificationOpen = false;
 
   constructor() {

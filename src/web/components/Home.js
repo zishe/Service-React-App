@@ -10,6 +10,9 @@ const Container = styled.div`
   && input, select {
     font-family: 'Roboto';
   }
+  && {
+    max-width: 1500px;
+  }
 `;
 
 @inject('store')

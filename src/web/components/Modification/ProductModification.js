@@ -101,10 +101,10 @@ export default class ProductModification extends Component {
   }
 
   handleDialogSubmit = () => {
-    // this.props.store.productStore.setModifyingProductData({servingWeight: e.target.value})
     this.props.store.shoppingCartStore.addProduct(
       this.props.store.productStore.modifyingProduct,
-      this.props.store.productStore.modificationData
+      this.props.store.productStore.modificationData,
+      this.props.store.productStore.ingredientsModification
     )
     this.handleDialogClose()
   }

@@ -108,7 +108,7 @@ export class Header extends React.Component {
               <MenuIcon />
             </MenuButton>
             <HeadTitle variant="title" color="inherit">
-              Service
+
             </HeadTitle>
             <SearchBar>
               <SearchIconArea>
