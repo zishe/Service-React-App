@@ -4,7 +4,6 @@ import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import IngredientTypeSelect from './IngredientTypeSelect';
 import Select from 'react-select';
-import makeAnimated from 'react-select/lib/animated';
 import { Typography } from '@material-ui/core';
 
 

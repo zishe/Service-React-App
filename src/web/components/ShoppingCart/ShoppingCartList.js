@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import { List, ListItem, Avatar, ListItemText, Typography, ListItemSecondaryAction, IconButton, Icon } from '@material-ui/core';
+import { List, ListItem, Avatar, ListItemText, Typography, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styled from 'styled-components';
 import { isNullOrUndefined } from 'util';
@@ -24,16 +24,6 @@ const ItemPreview = styled(Avatar)`
 `;
 
 const ShoppingList = styled(List)`
-  && {
-  }
-`;
-
-const ProductWeight = styled(Typography)`
-  && {
-  }
-`;
-
-const ProductComposition = styled(Typography)`
   && {
   }
 `;
@@ -77,7 +67,7 @@ export default class ShoppingCartList extends Component {
       console.log(ingredientsModification);
       Object.keys(ingredientsModification).map((id) => {
         const modificationData = ingredientsModification[id];
-        const ingredientObj = product.ingredients.find((x) => x.id === id)
+        // const ingredientObj = product.ingredients.find((x) => x.id === id)
 
         console.log('ingredient');
         console.log(modificationData);
