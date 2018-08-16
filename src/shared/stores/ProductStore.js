@@ -1,5 +1,5 @@
 import { observable, action, runInAction, reaction } from 'mobx';
-import { API } from '../Api';
+import { API } from '../adapters/Api';
 
 export class ProductStore {
 
@@ -7,6 +7,7 @@ export class ProductStore {
   @observable modifyingProduct = {};
   @observable modificationData = {};
   @observable ingredientsModification = {};
+  @observable lastProduct = null;
   @observable isLoading = true;
 
   constructor(rootStore) {
@@ -48,9 +49,9 @@ export class ProductStore {
   fetchById = async (id) => {
     const product = await API.get('products', id);
 
-    runInAction('Load all products', () => {
+    runInAction('Load Product by Id', () => {
       console.log(product);
-      this.modifyingProduct = product;
+      this.lastProduct = product;
     });
   }
 
@@ -62,8 +63,6 @@ export class ProductStore {
 
   @action
   setModifyingProductData = (obj) => {
-    // console.log(obj);
-
     Object.keys(obj).forEach((attr) => {
       console.log(attr);
 

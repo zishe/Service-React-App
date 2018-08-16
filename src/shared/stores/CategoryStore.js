@@ -1,5 +1,5 @@
 import { observable, action, runInAction } from 'mobx';
-import { API } from '../Api';
+import { API } from '../adapters/Api';
 
 export class CategoryStore {
 

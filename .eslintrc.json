@@ -13,7 +13,9 @@
       "globalReturn ": true,
       "impliedStrict": true,
       "experimentalObjectRestSpread": true,
-      "experimentalDecorators": true
+      "experimentalDecorators": true,
+      "OptionalCallExpressions": true,
+      "OptionalMemberExpressions": true
     }
   },
   "env": {

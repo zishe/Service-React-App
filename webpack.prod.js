@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: [path.join(__dirname, './public/index')],
+  entry: [path.join(__dirname, './src/index')],
   output: {
     path: path.join(__dirname, './public'),
     filename: 'bundle.js',
@@ -16,8 +16,10 @@ module.exports = {
         exclude: /node_modules/,
         use: [{
           loader: 'babel-loader',
-          options: {
-            presets: ['es2015', 'react', 'stage-0']
+          options:
+          {
+            babelrc: true,
+            cacheDirectory: true
           }
         }]
       }

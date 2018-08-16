@@ -1,8 +1,8 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import Categories from './Home/Categories';
-import Products from './Home/Popular';
-import ProductModification from './Modification/ProductModification';
+import Categories from '../../shared/components/home/Categories';
+import Products from '../../shared/components/home/Popular';
+import ProductModification from '../../shared/components/modification/ProductModification';
 import { isNullOrUndefined } from 'util';
 import styled from 'styled-components';
 
@@ -11,13 +11,14 @@ const Container = styled.div`
     font-family: 'Roboto';
   }
   && {
-    max-width: 1500px;
+    max-width: 1800px;
+    margin: 0 auto;
   }
 `;
 
 @inject('store')
 @observer
-export class Home extends React.Component {
+export default class Home extends React.Component {
   render() {
     const { store } = this.props;
 

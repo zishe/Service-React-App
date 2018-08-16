@@ -8,10 +8,6 @@ const Container = styled.div`
   && {
     text-align: center;
     align-items: center;
-    display: 'flex';
-    flex-wrap: 'wrap';
-    justify-content: 'space-around';
-    overflow: 'hidden';
   }
 `
 
