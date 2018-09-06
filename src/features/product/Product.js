@@ -21,24 +21,27 @@ const ProductTitle = styled(Typography)`
 @inject('store')
 @observer
 export default class Product extends Component {
-  componentDidMount () {
-    this.props.store.productStore.fetchById(this.props.id);
-  }
+  // componentDidMount () {
+  //   this.props.store.productStore.fetchById(this.props.id);
+  // }
 
-  loadProduct = (id) => {
-    const { productStore } = this.props.store;
-    productStore.fetchById(id);
-  }
+  // loadProduct = (id) => {
+  //   const { productStore } = this.props.store;
+  //   productStore.fetchById(id);
+  // }
 
   render() {
-    const { lastProduct } = this.props.store.productStore;
+    const { showProduct } = this.props.store.productStore;
     console.log(this.props);
 
     return (
       <Container>
+        {showProduct ?
         <ProductTitle variant="headline" gutterBottom>
-          {lastProduct.name}
-        </ProductTitle>
+          {showProduct.name}
+        </ProductTitle> :
+        <div>Loading</div>
+        }
       </Container>
     )
   }

@@ -8,6 +8,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 const ExtCardMedia = styled(CardMedia)`
   && {
     height: 200px;
+    cursor: pointer;
   }
 `
 
@@ -24,8 +25,6 @@ const ProductCard = styled(Card)`
     display: inline-block;
     margin: 0 0 10px 10px;
     width: calc(100% - 10px);
-
-    cursor: pointer;
   }
   @media (min-width: 500px) {
     && {
@@ -97,6 +96,12 @@ export default class ProductList extends Component {
     }
   }
 
+  handleClick = (product) => {
+    const { store: { routerStore, productStore } } = this.props;
+    // productStore.lastProduct = product;
+    routerStore.goTo('product', {id: product.id});
+  }
+
   render() {
     const { products } = this.props.store.productStore
 
@@ -108,6 +113,7 @@ export default class ProductList extends Component {
             <ExtCardMedia
               image={product.image}
               title={product.name}
+              onClick={() => { this.handleClick(product)} }
             />
             <ProductContent>
               <Typography gutterBottom variant="headline" component="h3" style={{paddingBottom: 10, fontSize: 21}}>
@@ -155,7 +161,6 @@ export default class ProductList extends Component {
               </Typography>
             </CardActions>
           </ProductCard>
-          // </Link>
         )}
       </Container>
     );

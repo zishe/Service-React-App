@@ -8,6 +8,7 @@ export class ProductStore {
   @observable modificationData = {};
   @observable ingredientsModification = {};
   @observable lastProduct = null;
+  @observable showProduct;
   @observable isLoading = true;
 
   constructor(rootStore) {
@@ -47,11 +48,22 @@ export class ProductStore {
 
   @action
   fetchById = async (id) => {
+    if (id == null || id === undefined) return;
     const product = await API.get('products', id);
 
     runInAction('Load Product by Id', () => {
       console.log(product);
       this.lastProduct = product;
+    });
+  }
+
+  @action
+  loadProduct = async (id) => {
+    if (id == null || id === undefined) return;
+    const product = await API.get('products', id);
+
+    runInAction('Load Product by Id', () => {
+      this.showProduct = product;
     });
   }
 
