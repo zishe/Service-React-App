@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { TextField } from '@material-ui/core';
 
 @inject('store')
 @observer
-export class ModificationNote extends Component {
-  static propTypes = {
-
-  }
+class ModificationNote extends Component {
+  static propTypes = {};
 
   render() {
     return (
@@ -18,7 +16,7 @@ export class ModificationNote extends Component {
           id="full-width"
           label="Комментарий"
           InputLabelProps={{
-            shrink: true,
+            shrink: true
           }}
           // placeholder="Получше прожарить!"
           helperText="Получше прожарить!"
@@ -27,8 +25,8 @@ export class ModificationNote extends Component {
           value={this.props.store.productStore.modificationData.Note}
         />
       </div>
-    )
+    );
   }
 }
 
-export default ModificationNote
+export default ModificationNote;

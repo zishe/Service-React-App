@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import GridList from '@material-ui/core/GridList';
@@ -7,7 +7,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 // import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-
 
 const Container = styled.div`
   display: 'flex';
@@ -38,9 +37,9 @@ const Item = styled(GridListTile)`
 
 @inject('store')
 @observer
-export default class Categories extends Component {
-  UNSAFE_componentWillMount () {
-    this.props.store.categoryStore.fetchAll()
+class Categories extends Component {
+  UNSAFE_componentWillMount() {
+    this.props.store.categoryStore.fetchAll();
   }
 
   render() {
@@ -49,7 +48,7 @@ export default class Categories extends Component {
     return (
       <Container>
         <CategoryPanel cols={5}>
-          {categories.map((category) =>
+          {categories.map(category => (
             <Item key={category.id}>
               <img src={category.image} alt={category.name} />
               <GridListTileBar
@@ -62,9 +61,11 @@ export default class Categories extends Component {
                 }
               />
             </Item>
-          )}
+          ))}
         </CategoryPanel>
       </Container>
-    )
+    );
   }
 }
+
+export default Categories;

@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export class API {
-  static baseURL = 'http://localhost:3000/api/v1/'
+  static baseURL = 'http://localhost:3000/api/v1/';
 
   static async getAll(model) {
-    const response = await axios.get(API.baseURL + `${model}`)
-    return await response.data
+    const response = await axios.get(API.baseURL + `${model}`);
+    return await response.data;
   }
 
   static get = (model, id) => {
@@ -15,9 +15,9 @@ export class API {
         .then(res => {
           resolve(res.data);
         })
-        .catch((err) => {
+        .catch(err => {
           reject(err);
         });
     });
-  }
+  };
 }

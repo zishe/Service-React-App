@@ -1,7 +1,6 @@
 import { observable, action, computed } from 'mobx';
 
 export class ShoppingCartStore {
-
   @observable products = [];
   @observable paid = true;
   @observable modifyingProduct = null;
@@ -14,7 +13,8 @@ export class ShoppingCartStore {
   //   return this.products.filter(item => item.id === product.id).length;
   // }
 
-  @computed get size() {
+  @computed
+  get size() {
     return this.products.length;
   }
 
@@ -25,10 +25,10 @@ export class ShoppingCartStore {
       modificationData: modificationData,
       ingredientsModification: ingredientsModification
     });
-  }
+  };
 
   @action
-  removeProduct = (product) => {
-    this.products = this.products.filter(item => item.product !== product)
-  }
+  removeProduct = product => {
+    this.products = this.products.filter(item => item.product !== product);
+  };
 }

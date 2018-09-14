@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import Categories from '../../shared/components/home/Categories';
 import Products from '../../shared/components/home/Popular';
@@ -7,7 +7,8 @@ import { isNullOrUndefined } from 'util';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  && input, select {
+  && input,
+  select {
     font-family: 'Roboto';
   }
   && {
@@ -18,7 +19,7 @@ const Container = styled.div`
 
 @inject('store')
 @observer
-export default class Home extends React.Component {
+class Home extends Component {
   render() {
     const { store } = this.props;
 
@@ -26,9 +27,12 @@ export default class Home extends React.Component {
       <Container>
         <Categories />
         <Products />
-        {!isNullOrUndefined(store.productStore.modifyingProduct) &&
-          <ProductModification product={store.productStore.modifyingProduct} />}
+        {!isNullOrUndefined(store.productStore.modifyingProduct) && (
+          <ProductModification product={store.productStore.modifyingProduct} />
+        )}
       </Container>
-    )
+    );
   }
 }
+
+export default Home;

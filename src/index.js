@@ -6,7 +6,4 @@ import App from './app';
 
 // const HotApp = hot(module)(App)
 
-render(
-  <App />,
-  document.getElementById('root')
-);
+render(<App />, document.getElementById('root'));

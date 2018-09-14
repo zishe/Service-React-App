@@ -1,10 +1,20 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
-import { Dialog, Button, DialogTitle, DialogContent, DialogActions, FormControl, InputLabel, Input, Typography } from '@material-ui/core';
+import {
+  Dialog,
+  Button,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  FormControl,
+  InputLabel,
+  Input,
+  Typography
+} from '@material-ui/core';
 import styled from 'styled-components';
-import { IngredientList } from './IngredientList';
-import { ModificationNote } from './ModificationNote';
+import IngredientList from './IngredientList';
+import ModificationNote from './ModificationNote';
 
 const Container = styled.div`
   && {
@@ -27,7 +37,7 @@ const ProductTitle = styled(DialogTitle)`
     /* min-width: 600px; */
     padding-bottom: 5px;
   }
-`
+`;
 
 const ItemPreview = styled.div`
   && {
@@ -53,7 +63,6 @@ const Form = styled.form`
   }
 `;
 
-
 const ProductImage = styled.img`
   && {
     height: 190px;
@@ -73,14 +82,13 @@ const ProductData = styled(DialogContent)`
   }
 `;
 
-
 @inject('uiStore')
 @inject('store')
 @observer
-export default class ProductModification extends Component {
+class ProductModification extends Component {
   static propTypes = {
     product: PropTypes.object
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -89,26 +97,27 @@ export default class ProductModification extends Component {
 
   handleDialogOpen = () => {
     this.props.uiStore.productModificationOpen = true;
-  }
+  };
 
   handleDialogClose = () => {
     this.props.store.productStore.modifyingProduct = null;
     this.props.uiStore.productModificationOpen = false;
-  }
+  };
 
-  handleModifyChange = (e) => {
-    this.props.store.productStore.setModifyingProductData({servingWeight: e.target.value})
-  }
+  handleModifyChange = e => {
+    this.props.store.productStore.setModifyingProductData({
+      servingWeight: e.target.value
+    });
+  };
 
   handleDialogSubmit = () => {
     this.props.store.shoppingCartStore.addProduct(
       this.props.store.productStore.modifyingProduct,
       this.props.store.productStore.modificationData,
       this.props.store.productStore.ingredientsModification
-    )
-    this.handleDialogClose()
-  }
-
+    );
+    this.handleDialogClose();
+  };
 
   render() {
     const { uiStore, store, fullScreen } = this.props;
@@ -117,54 +126,61 @@ export default class ProductModification extends Component {
     console.log('product');
     console.log(product);
 
-    return (product &&
-      <Container>
-        <ModificationDialog
-          // contentStyle={{width: 700}}
-          fullScreen={fullScreen}
-          open={uiStore.productModificationOpen}
-          onClose={this.handleDialogClose}
-          aria-labelledby="responsive-dialog-title"
-        >
+    return (
+      product && (
+        <Container>
+          <ModificationDialog
+            // contentStyle={{width: 700}}
+            fullScreen={fullScreen}
+            open={uiStore.productModificationOpen}
+            onClose={this.handleDialogClose}
+            aria-labelledby="responsive-dialog-title"
+          >
+            <ProductTitle id="responsive-dialog-title">
+              {product.name}
+            </ProductTitle>
+            <ItemPreview>
+              <ProductImage src={product.image} alt={product.name} />
+            </ItemPreview>
 
-          <ProductTitle id="responsive-dialog-title">
-            {product.name}
-          </ProductTitle>
-          <ItemPreview>
-            <ProductImage src={product.image} alt={product.name} />
-          </ItemPreview>
-
-          <ProductData>
-            <Form autoComplete="off">
-              <FormControl >
-                <InputLabel htmlFor="name-simple">Вес</InputLabel>
-                <Input
-                  name="name-simple"
-                  value={store.productStore.modificationData.servingWeight}
-                  onChange={this.handleModifyChange}
-                />
-                <WeightHelpText >
-                  Вес страндартной порции {product.servingWeight} гр.
-                </WeightHelpText>
-              </FormControl>
-              <IngredientsTitle variant="title" gutterBottom >
+            <ProductData>
+              <Form autoComplete="off">
+                <FormControl>
+                  <InputLabel htmlFor="name-simple">Вес</InputLabel>
+                  <Input
+                    name="name-simple"
+                    value={store.productStore.modificationData.servingWeight}
+                    onChange={this.handleModifyChange}
+                  />
+                  <WeightHelpText>
+                    Вес страндартной порции {product.servingWeight} гр.
+                  </WeightHelpText>
+                </FormControl>
+                <IngredientsTitle variant="title" gutterBottom>
                   Ингредиенты:
-              </IngredientsTitle>
-              <IngredientList product={product}/>
-              <ModificationNote />
-            </Form>
-          </ProductData>
+                </IngredientsTitle>
+                <IngredientList product={product} />
+                <ModificationNote />
+              </Form>
+            </ProductData>
 
-          <DialogActions>
-            <Button onClick={this.handleDialogClose} color="primary">
-              Вернуться
-            </Button>
-            <Button onClick={this.handleDialogSubmit} color="primary" autoFocus>
-              Добавить
-            </Button>
-          </DialogActions>
-        </ModificationDialog>
-      </Container>
-    )
+            <DialogActions>
+              <Button onClick={this.handleDialogClose} color="primary">
+                Вернуться
+              </Button>
+              <Button
+                onClick={this.handleDialogSubmit}
+                color="primary"
+                autoFocus
+              >
+                Добавить
+              </Button>
+            </DialogActions>
+          </ModificationDialog>
+        </Container>
+      )
+    );
   }
 }
+
+export default ProductModification;

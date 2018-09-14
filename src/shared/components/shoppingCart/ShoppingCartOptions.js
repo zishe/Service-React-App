@@ -26,26 +26,24 @@ const DateTime = styled.div`
 @inject('store')
 @observer
 class ShoppingCartOptions extends Component {
-  static propTypes = {
-  }
+  static propTypes = {};
 
-  handleChangeTime = (time) => {
+  handleChangeTime = time => {
     console.log(time);
-  }
+  };
 
   render() {
     return (
       <Container>
         <DateTime>
           <TimeInput
-            mode='12h'
-            onChange={(time) => this.handleChangeTime(time)}
+            mode="12h"
+            onChange={time => this.handleChangeTime(time)}
           />
         </DateTime>
-        <Note>
-        </Note>
+        <Note />
       </Container>
-    )
+    );
   }
 }
 

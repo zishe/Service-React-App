@@ -16,7 +16,7 @@ export const routes = [
     name: 'notFound',
     pattern: '/not-found'
   }
-]
+];
 
 // export const routes = [
 //   {

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import Select from 'react-select';
@@ -8,7 +8,7 @@ const IngredientType = styled.div`
   && {
     /* float: left; */
   }
-`
+`;
 
 // const Label = styled(InputLabel)`
 //   && {
@@ -23,19 +23,20 @@ const SelectIngredient = styled(Select)`
   }
 `;
 
-
 @inject('store')
 @observer
-export default class IngredientTypeSelect extends Component {
+class IngredientTypeSelect extends Component {
   static propTypes = {
     ingredient: PropTypes.object
-  }
+  };
 
-  handleChange = (selectedOption) => {
+  handleChange = selectedOption => {
     console.log('selectedOption');
     console.log(selectedOption);
-    this.props.store.productStore.ingredientsModification[this.props.ingredient.id] = { selected: selectedOption }
-  }
+    this.props.store.productStore.ingredientsModification[
+      this.props.ingredient.id
+    ] = { selected: selectedOption };
+  };
 
   render() {
     const { ingredient } = this.props;
@@ -43,14 +44,21 @@ export default class IngredientTypeSelect extends Component {
       <IngredientType>
         <SelectIngredient
           required="false"
-          placeholder={"Тип"}
+          placeholder={'Тип'}
           noResultsText="Пусто"
-          value={this.props.store.productStore?.ingredientsModification[ingredient.id]?.selected}
+          value={
+            this.props.store.productStore?.ingredientsModification[
+              ingredient.id
+            ]?.selected
+          }
           onChange={this.handleChange}
-          options={ingredient.ingredientTypes.map((x) => { return { value: x.id, label: x.name } })}
-        >
-        </SelectIngredient>
+          options={ingredient.ingredientTypes.map(x => {
+            return { value: x.id, label: x.name };
+          })}
+        />
       </IngredientType>
     );
   }
 }
+
+export default IngredientTypeSelect;

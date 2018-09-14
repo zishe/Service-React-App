@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import styled, { css } from 'styled-components';
-import { Typography, AppBar, Toolbar, IconButton, Button, Badge } from '@material-ui/core';
+import {
+  Typography,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Button,
+  Badge
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { ShoppingCart } from './ShoppingCart/ShoppingCart';
@@ -11,18 +18,18 @@ const MenuButton = styled(IconButton)`
     margin-left: -12px;
     margin-right: 20px;
   }
-`
+`;
 
 const HeadTitle = styled(Typography)`
   && {
     flex: 1;
   }
-`
+`;
 const Wrapper = styled.div`
   && {
     flex-grow: 1;
   }
-`
+`;
 
 const StyledBar = styled(AppBar)`
   && {
@@ -30,18 +37,18 @@ const StyledBar = styled(AppBar)`
     color: #fff;
     background-color: #2196f3;
   }
-`
+`;
 
 const SearchBar = styled.div`
   && {
     position: relative;
     background: rgba(255, 255, 255, 0.15);
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
     margin-left: 8px;
     margin-right: 46px;
     border-radius: 2px;
   }
-`
+`;
 const SearchIconArea = styled.div`
   && {
     width: 72px;
@@ -52,14 +59,14 @@ const SearchIconArea = styled.div`
     pointer-events: none;
     justify-content: center;
   }
-`
+`;
 const AutocompleteArea = styled.span`
   && {
     position: relative;
     display: inline-block;
     direction: ltr;
   }
-`
+`;
 const AutocompleteInput = styled.input`
   && {
     position: relative;
@@ -81,24 +88,23 @@ const AutocompleteInput = styled.input`
       transform: scale(2) 300ms;
     }
 
-    ${props => props.focused && css`
-      margin-top: 30px;
-    `}
+    ${props =>
+      props.focused &&
+      css`
+        margin-top: 30px;
+      `};
   }
-`
+`;
 
 @inject('store')
 @observer
 export class Header extends React.Component {
-
   constructor(props) {
     super(props);
     this.search = React.createRef();
   }
 
-  onFocus = () => {
-
-  }
+  onFocus = () => {};
   render() {
     return (
       <Wrapper>
@@ -107,29 +113,26 @@ export class Header extends React.Component {
             <MenuButton color="inherit" aria-label="Menu">
               <MenuIcon />
             </MenuButton>
-            <HeadTitle variant="title" color="inherit">
-
-            </HeadTitle>
+            <HeadTitle variant="title" color="inherit" />
             <SearchBar>
               <SearchIconArea>
                 <SearchIcon />
               </SearchIconArea>
               <AutocompleteArea>
-                <AutocompleteInput
-                  onFocus={this.onFocus}
-                />
+                <AutocompleteInput onFocus={this.onFocus} />
               </AutocompleteArea>
             </SearchBar>
             <Badge
-              style={{marginRight: 10}}
+              style={{ marginRight: 10 }}
               badgeContent={this.props.store.shoppingCartStore.size}
-              color="primary">
+              color="primary"
+            >
               <ShoppingCart />
             </Badge>
             <Button color="inherit">Login</Button>
           </Toolbar>
         </StyledBar>
       </Wrapper>
-    )
+    );
   }
 }

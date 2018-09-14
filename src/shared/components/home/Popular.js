@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
-import styled from 'styled-components'
-import { Typography } from '@material-ui/core'
-import ProductList from './ProductList'
+import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
+import styled from 'styled-components';
+import { Typography } from '@material-ui/core';
+import ProductList from './ProductList';
 
 const Container = styled.div`
   && {
     text-align: center;
     align-items: center;
   }
-`
+`;
 
 const ProductsTitle = styled(Typography)`
   && {
@@ -17,13 +17,13 @@ const ProductsTitle = styled(Typography)`
     font-size: 2rem;
     margin: 20px auto 10px;
   }
-`
+`;
 
 @inject('store')
 @observer
-export default class Products extends Component {
-  UNSAFE_componentWillMount () {
-    this.props.store.productStore.fetchAll()
+class Products extends Component {
+  UNSAFE_componentWillMount() {
+    this.props.store.productStore.fetchAll();
   }
 
   render() {
@@ -36,6 +36,8 @@ export default class Products extends Component {
         </ProductsTitle>
         <ProductList products={products} />
       </Container>
-    )
+    );
   }
 }
+
+export default Products;

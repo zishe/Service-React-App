@@ -6,11 +6,11 @@ import {
   DialogTitle,
   DialogContent,
   withMobileDialog,
-  DialogActions,
+  DialogActions
 } from '@material-ui/core';
 import styled from 'styled-components';
 import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ShoppingCartList from './ShoppingCartList'
+import ShoppingCartList from './ShoppingCartList';
 import ShoppingCartOptions from './ShoppingCartOptions';
 
 const Container = styled.div`
@@ -52,26 +52,23 @@ const CartOptions = styled.div`
   }
 `;
 
-
-
 @inject('uiStore')
 @observer
-export class ShoppingCart extends Component {
-
+class ShoppingCart extends Component {
   handleDialogOpen = () => {
     this.props.uiStore.shoppingCartOpen = true;
-  }
+  };
 
   handleDialogClose = () => {
     this.props.uiStore.shoppingCartOpen = false;
-  }
+  };
 
   render() {
     const { uiStore, fullScreen } = this.props;
 
     return (
       <Container>
-        <OpenDialogButton onClick={this.handleDialogOpen} >
+        <OpenDialogButton onClick={this.handleDialogOpen}>
           <ShoppingBasket />
         </OpenDialogButton>
         <ShoppingCartDialog
@@ -80,14 +77,12 @@ export class ShoppingCart extends Component {
           onClose={this.handleDialogClose}
           aria-labelledby="responsive-dialog-title"
         >
-          <CartTitle id="responsive-dialog-title">
-            Заявка
-          </CartTitle>
+          <CartTitle id="responsive-dialog-title">Заявка</CartTitle>
           <CartContent>
-            <ShoppingCartList/>
+            <ShoppingCartList />
           </CartContent>
           <CartOptions>
-            <ShoppingCartOptions/>
+            <ShoppingCartOptions />
           </CartOptions>
           <DialogActions>
             <Button onClick={this.handleDialogClose} color="primary">
@@ -99,7 +94,7 @@ export class ShoppingCart extends Component {
           </DialogActions>
         </ShoppingCartDialog>
       </Container>
-    )
+    );
   }
 }
 

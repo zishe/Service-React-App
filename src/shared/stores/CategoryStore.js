@@ -2,7 +2,6 @@ import { observable, action, runInAction } from 'mobx';
 import { API } from '../adapters/Api';
 
 export class CategoryStore {
-
   @observable categories = [];
   @observable isLoading = true;
 
@@ -19,5 +18,5 @@ export class CategoryStore {
       this.categories = categories;
       this.isLoading = false;
     });
-  }
+  };
 }

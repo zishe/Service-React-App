@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
-import styled from 'styled-components'
-import { Typography } from '@material-ui/core'
+import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
+import styled from 'styled-components';
+import { Typography } from '@material-ui/core';
 
 const Container = styled.div`
   && {
     text-align: center;
     align-items: center;
   }
-`
+`;
 
 const ProductTitle = styled(Typography)`
   && {
@@ -16,11 +16,11 @@ const ProductTitle = styled(Typography)`
     font-size: 2rem;
     margin: 20px auto 10px;
   }
-`
+`;
 
 @inject('store')
 @observer
-export default class Product extends Component {
+class Product extends Component {
   // componentDidMount () {
   //   this.props.store.productStore.fetchById(this.props.id);
   // }
@@ -36,13 +36,16 @@ export default class Product extends Component {
 
     return (
       <Container>
-        {showProduct ?
-        <ProductTitle variant="headline" gutterBottom>
-          {showProduct.name}
-        </ProductTitle> :
-        <div>Loading</div>
-        }
+        {showProduct ? (
+          <ProductTitle variant="headline" gutterBottom>
+            {showProduct.name}
+          </ProductTitle>
+        ) : (
+          <div>Loading</div>
+        )}
       </Container>
-    )
+    );
   }
 }
+
+export default Product;
