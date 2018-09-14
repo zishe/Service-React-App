@@ -25,7 +25,7 @@ const DateTime = styled.div`
 @inject('uiStore')
 @inject('store')
 @observer
-export default class ShoppingCartOptions extends Component {
+class ShoppingCartOptions extends Component {
   static propTypes = {
   }
 
@@ -48,3 +48,5 @@ export default class ShoppingCartOptions extends Component {
     )
   }
 }
+
+export default ShoppingCartOptions;
