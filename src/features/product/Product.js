@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import Product from '../../shared/components/product/Product';
 
 const Container = styled.div`
   && {
@@ -10,42 +10,22 @@ const Container = styled.div`
   }
 `;
 
-const ProductTitle = styled(Typography)`
-  && {
-    text-align: center;
-    font-size: 2rem;
-    margin: 20px auto 10px;
-  }
-`;
-
 @inject('store')
 @observer
-class Product extends Component {
-  // componentDidMount () {
-  //   this.props.store.productStore.fetchById(this.props.id);
-  // }
-
-  // loadProduct = (id) => {
-  //   const { productStore } = this.props.store;
-  //   productStore.fetchById(id);
-  // }
-
+class ProductPage extends Component {
   render() {
     const { showProduct } = this.props.store.productStore;
-    console.log(this.props);
 
     return (
       <Container>
         {showProduct ? (
-          <ProductTitle variant="headline" gutterBottom>
-            {showProduct.name}
-          </ProductTitle>
+          <Product />
         ) : (
-          <div>Loading</div>
+          <div></div>
         )}
       </Container>
     );
   }
 }
 
-export default Product;
+export default ProductPage;
