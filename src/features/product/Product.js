@@ -12,7 +12,7 @@ const Container = styled.div`
 
 @inject('store')
 @observer
-class ProductPage extends Component {
+class ProductPageBase extends Component {
   render() {
     const { showProduct } = this.props.store.productStore;
 
@@ -28,4 +28,4 @@ class ProductPage extends Component {
   }
 }
 
-export default ProductPage;
+export const ProductPage = ProductPageBase;

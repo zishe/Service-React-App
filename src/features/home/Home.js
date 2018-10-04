@@ -19,7 +19,7 @@ const Container = styled.div`
 
 @inject('store')
 @observer
-class Home extends Component {
+class HomePageBase extends Component {
   render() {
     const { store } = this.props;
 
@@ -35,4 +35,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export const HomePage = HomePageBase;

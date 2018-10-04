@@ -8,11 +8,13 @@
     "android-bundle": "react-native bundle --dev false --entry-file index.android.js --platform android --bundle-output android/app/src/main/assets/index.android.bundle",
     "android-dev-bundle": "react-native bundle --entry-file index.android.js --platform android --bundle-output android/app/src/main/assets/index.android.bundle",
     "web-bundle": "webpack-cli --config webpack.prod.config.js --progress --colors",
-    "web-dev": "webpack-dev-server --content-base public/ --config webpack.dev.config.js --port 3002 --inline --hot --colors --mode development --history-api-fallback",
+    "web-dev": "webpack-dev-server --display-error-details --content-base public/ --config webpack.dev.config.js --port 3002 --inline --hot --colors --mode development --history-api-fallback",
     "start": "npm run server",
     "server": "node --harmony server.js",
+    "dev": "webpack-dev-server --config ./webpack.dev.config.js --mode development --hot --history-api-fallback --open --host 0.0.0.0",
+    "prebuild": "rimraf public",
     "build:prod": "npm run prebuild && webpack --config ./webpack.prod.config.js --mode production --progress --profile --colors",
-    "build:dev": "npm run prebuild && webpack --config ./webpack.prod.config.js --mode development --progress --profile --colors",
+    "build:dev": "npm run prebuild && webpack --config ./webpack.dev.config.js --mode development --progress --profile --colors",
     "format": "prettier --print-width 80 --single-quote --write 'src/**/*.js'",
     "lint": "./node_modules/eslint/bin/eslint.js -c .eslintrc.json src",
     "test": "jest"
@@ -38,13 +40,13 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-event-listener": "^0.6.4",
-    "react-final-form": "^3.6.5",
+    "react-final-form": "^3.6.6",
     "react-hot-loader": "4.3.11",
     "react-jss": "^8.6.1",
     "react-native": "0.57.1",
-    "react-select": "^2.0.0",
+    "react-select": "^2.1.0",
     "router5": "^6.5.1",
-    "styled-components": "^3.4.9"
+    "styled-components": "^4.0.0-beta"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
