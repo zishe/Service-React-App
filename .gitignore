@@ -15,4 +15,5 @@ yarn-error.log*
 
 .vscode/
 .vs/
+.vss/
 public/*
