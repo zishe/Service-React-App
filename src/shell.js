@@ -3,7 +3,8 @@ import { inject } from 'mobx-react';
 import { RouterView } from 'mobx-state-router';
 import {
   HomePage,
-  TaskPage,
+  NewTaskPage,
+  FindTaskPage,
   ProductPage,
   NotFoundPage,
 } from './features';
@@ -11,7 +12,8 @@ import {
 const viewMap = {
   product: <ProductPage />,
   home: <HomePage />,
-  task: <TaskPage />,
+  newTask: <NewTaskPage />,
+  findTask: <FindTaskPage />,
   notFound: <NotFoundPage />
 };
 

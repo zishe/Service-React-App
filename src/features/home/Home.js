@@ -1,38 +1,42 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import Categories from '../../shared/components/home/Categories';
-import Products from '../../shared/components/home/Popular';
-import ProductModification from '../../shared/components/modification/ProductModification';
-import { isNullOrUndefined } from 'util';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  && input,
-  select {
-    font-family: 'Roboto';
-  }
-  && {
-    max-width: 1800px;
-    margin: 0 auto;
-  }
-`;
+import Home from '../../shared/components/Home';
+import {
+  // RouterLink,
+  RouterState
+} from 'mobx-state-router';
 
 @inject('store')
 @observer
 class HomePageBase extends Component {
   render() {
-    const { store } = this.props;
+    const { store: { routerStore } } = this.props;
 
     return (
-      <Container>
-        <Categories />
-        <Products />
-        {!isNullOrUndefined(store.productStore.modifyingProduct) && (
-          <ProductModification product={store.productStore.modifyingProduct} />
-        )}
-      </Container>
+      <Home>
+        {/*
+          Temrory issue, should work
+        <RouterLink routeName="newTask">
+          Заказать услугу
+        </RouterLink>
+        <RouterLink routeName="findTask">
+          Стать исполнителем
+        </RouterLink> */}
+        <Home.Link toState={new RouterState('newTask')} routerStore={routerStore}>
+          <Home.Button variant="contained" size="large" color="primary">
+            Заказать услугу
+          </Home.Button>
+        </Home.Link>
+
+        <Home.Link toState={new RouterState('findTask')} routerStore={routerStore}>
+          <Home.Button variant="contained" size="large" color="secondary">
+            Стать исполнителем
+          </Home.Button>
+        </Home.Link>
+      </Home>
     );
   }
 }
+
 
 export const HomePage = HomePageBase;

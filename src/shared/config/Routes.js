@@ -1,7 +1,7 @@
 export const routes = [
   {
     name: 'home',
-    pattern: '/cooking'
+    pattern: '/'
   },
   {
     name: 'product',
@@ -12,8 +12,12 @@ export const routes = [
     }
   },
   {
-    name: 'task',
-    pattern: '/'
+    name: 'newTask',
+    pattern: '/new-task'
+  },
+  {
+    name: 'findTask',
+    pattern: '/find-task'
   },
   {
     name: 'notFound',

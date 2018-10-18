@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Provider, observer } from 'mobx-react';
+import { Provider } from 'mobx-react';
 import { RootStore } from './shared/stores/RootStore';
 import { UIStore } from './shared/stores/UIStore';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
@@ -31,7 +31,8 @@ const uiStore = new UIStore();
 const historyAdapter = new HistoryAdapter(rootStore.routerStore, history);
 historyAdapter.observeRouterStateChanges();
 
-@observer
+// @inject('store')
+// @observer
 class App extends Component {
   render() {
     return (

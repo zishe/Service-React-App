@@ -13,10 +13,10 @@ class TaskPageBase extends Component {
 
     return (
       <Container>
-        fssfdsdfds
+        find task
       </Container>
     );
   }
 }
 
-export const TaskPage = TaskPageBase;
+export const FindTaskPage = TaskPageBase;

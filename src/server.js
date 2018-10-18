@@ -3,18 +3,20 @@ import ReactDOMServer from 'react-dom/server';
 import ServerApp from './app';
 import { JssProvider, SheetsRegistry } from 'react-jss';
 import { StaticAdapter } from 'mobx-state-router';
-import { RootStore } from './stores/root.store';
+import { RootStore } from './shared/stores/RootStore';
 import { createLocation } from 'history';
 
 export const App = {
   getHTML: async location => {
     const rootStore = new RootStore();
+    console.log('root store created');
+
     const staticAdapter = new StaticAdapter(rootStore.routerStore);
     await staticAdapter.goToLocation(createLocation(location));
     const sheets = new SheetsRegistry();
     const reactContent = ReactDOMServer.renderToString(
       <JssProvider registry={sheets}>
-        <ServerApp rootStore={rootStore} />
+        <ServerApp store={rootStore} />
       </JssProvider>
     );
 
