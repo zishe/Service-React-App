@@ -22,5 +22,9 @@ export const routes = [
   {
     name: 'notFound',
     pattern: '/not-found'
+  },
+  {
+    name: 'cooking',
+    pattern: '/cooking'
   }
 ];

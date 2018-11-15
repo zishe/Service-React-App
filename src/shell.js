@@ -7,9 +7,11 @@ import {
   FindTaskPage,
   ProductPage,
   NotFoundPage,
+  CookingPage
 } from './features';
 
 const viewMap = {
+  cooking: <CookingPage />,
   product: <ProductPage />,
   home: <HomePage />,
   newTask: <NewTaskPage />,
