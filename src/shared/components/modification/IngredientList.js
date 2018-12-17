@@ -100,13 +100,8 @@ class IngredientList extends Component {
                 <IngredientName>{ingredient.name}</IngredientName>
                 <IngredientType ingredient={ingredient} />
                 <Tags
-                  value={
-                    store.productStore.ingredientsModification[ingredient.id]
-                      ?.tags
-                  }
-                  onChange={selectedItems =>
-                    this.handleChangeTags(ingredient, selectedItems)
-                  }
+                  value={store.productStore.ingredientsModification[ingredient.id]?.tags}
+                  onChange={selectedItems => this.handleChangeTags(ingredient, selectedItems)}
                   placeholder="Другое"
                   isMulti
                   options={ingredient.tags.map(x => {

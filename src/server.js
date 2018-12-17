@@ -44,9 +44,7 @@ function Html({ content, initialState, sheets }) {
         <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.__MOBX_INITIAL_STATE__=${JSON.stringify(
-              initialState
-            )};`
+            __html: `window.__MOBX_INITIAL_STATE__=${JSON.stringify(initialState)};`
           }}
         />
         <script src="/app.js" />

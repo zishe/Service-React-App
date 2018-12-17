@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
 import ProductList from './ProductList';
+
+const QUERY = gql`
+  query ProductsQuery($limit: Int!) {
+    products(limit: $limit) {
+      id
+      name
+      description
+      image
+    }
+  }
+`;
 
 const Container = styled.div`
   && {
@@ -19,23 +31,29 @@ const ProductsTitle = styled(Typography)`
   }
 `;
 
-@inject('store')
-@observer
 class Products extends Component {
-  UNSAFE_componentWillMount() {
-    this.props.store.productStore.fetchAll();
-  }
-
   render() {
-    const { products } = this.props.store.productStore;
-
     return (
       <Container>
         <ProductsTitle variant="headline" gutterBottom>
           Популярное
         </ProductsTitle>
-        <ProductList products={products} />
-      </Container>
+        <Query query={QUERY} variables={{ limit: 8 }}>
+          {({ loading, error, data }) => {
+            if (loading) return <div></div>;
+            if (error) {
+              console.log(error);
+              return <div></div>;
+            }
+            if (data) {
+              console.log(data);
+              return (
+                <ProductList products={data.products} />
+                );
+              }
+            }}
+          </Query>
+        </Container>
     );
   }
 }

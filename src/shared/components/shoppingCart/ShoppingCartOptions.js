@@ -36,10 +36,7 @@ class ShoppingCartOptions extends Component {
     return (
       <Container>
         <DateTime>
-          <TimeInput
-            mode="12h"
-            onChange={time => this.handleChangeTime(time)}
-          />
+          <TimeInput mode="12h" onChange={time => this.handleChangeTime(time)} />
         </DateTime>
         <Note />
       </Container>

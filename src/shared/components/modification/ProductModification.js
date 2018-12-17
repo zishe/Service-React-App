@@ -136,9 +136,7 @@ class ProductModification extends Component {
             onClose={this.handleDialogClose}
             aria-labelledby="responsive-dialog-title"
           >
-            <ProductTitle id="responsive-dialog-title">
-              {product.name}
-            </ProductTitle>
+            <ProductTitle id="responsive-dialog-title">{product.name}</ProductTitle>
             <ItemPreview>
               <ProductImage src={product.image} alt={product.name} />
             </ItemPreview>
@@ -168,11 +166,7 @@ class ProductModification extends Component {
               <Button onClick={this.handleDialogClose} color="primary">
                 Вернуться
               </Button>
-              <Button
-                onClick={this.handleDialogSubmit}
-                color="primary"
-                autoFocus
-              >
+              <Button onClick={this.handleDialogSubmit} color="primary" autoFocus>
                 Добавить
               </Button>
             </DialogActions>

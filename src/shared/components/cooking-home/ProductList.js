@@ -108,7 +108,7 @@ class ProductList extends Component {
   };
 
   render() {
-    const { products } = this.props.store.productStore;
+    const { products } = this.props;
 
     return (
       <Container>
@@ -132,20 +132,13 @@ class ProductList extends Component {
                 {product.name}
               </Typography>
               <ProductWeight>
-                <Typography
-                  variant="subheading"
-                  component="span"
-                  style={{ fontSize: 16 }}
-                >
+                <Typography variant="subheading" component="span" style={{ fontSize: 16 }}>
                   {product.servingWeight} гр.
                 </Typography>
               </ProductWeight>
               <Typography component="p">{product.description}</Typography>
             </ProductContent>
-            <CardActions
-              disableActionSpacing
-              style={{ flexDirection: 'row-reverse' }}
-            >
+            <CardActions disableActionSpacing style={{ flexDirection: 'row-reverse' }}>
               {/* <IconButton aria-label="Share">
                 <ShareIcon />
               </IconButton> */}
@@ -173,12 +166,7 @@ class ProductList extends Component {
                   // style={{ fontSize: 48 }}
                 />
               </AddButton>
-              <Typography
-                variant="body1"
-                gutterBottom
-                align="left"
-                style={{ paddingRight: 20 }}
-              >
+              <Typography variant="body1" gutterBottom align="left" style={{ paddingRight: 20 }}>
                 {this.inCart(product)}
               </Typography>
             </CardActions>

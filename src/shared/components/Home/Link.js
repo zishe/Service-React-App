@@ -1,7 +1,7 @@
-import { Link } from 'mobx-state-router';
+import { RouterLink } from 'mobx-state-router';
 import styled from 'styled-components';
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(RouterLink)`
   && {
     text-decoration: none;
   }

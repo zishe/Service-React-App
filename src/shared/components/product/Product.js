@@ -21,7 +21,6 @@ const ExtCardMedia = styled(CardMedia)`
 @inject('store')
 @observer
 class Product extends Component {
-
   render() {
     const { showProduct } = this.props.store.productStore;
 
@@ -30,12 +29,9 @@ class Product extends Component {
         <ProductTitle variant="headline" gutterBottom>
           {showProduct.name}
         </ProductTitle>
-        <ExtCardMedia
-          image={showProduct.image}
-          title={showProduct.name}
-        />
+        <ExtCardMedia image={showProduct.image} title={showProduct.name} />
       </Fragment>
-    )
+    );
   }
 }
 

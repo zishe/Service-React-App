@@ -1,71 +1,60 @@
 import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react';
-import styled from 'styled-components';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-// import ListSubheader from '@material-ui/core/ListSubheader';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import Categories from './categories/';
 
-const Container = styled.div`
-  display: 'flex';
-  flex-wrap: 'wrap';
-  justify-content: 'space-around';
-  overflow: 'hidden';
-  /* background-color: #eee; */
-  /* padding-bottom: 40px; */
-`;
-
-const CategoryPanel = styled(GridList)`
-  flex-wrap: 'nowrap';
-  transform: 'translateZ(0)';
-`;
-
-const padding = 15;
-const Item = styled(GridListTile)`
-  && {
-    width: calc(25% -15px) !important;
-    cursor: pointer;
-    /* height: auto !important; */
-  }
-  padding: ${padding}px 0 ${padding}px ${padding}px !important;
-  &:last-child {
-    padding-right: ${padding}px !important;
+const QUERY = gql`
+  query CategoriesQuery($limit: Int!) {
+    categories(limit: $limit) {
+      id
+      name
+      description
+      image
+    }
   }
 `;
 
-@inject('store')
-@observer
-class Categories extends Component {
-  UNSAFE_componentWillMount() {
-    this.props.store.categoryStore.fetchAll();
-  }
-
+class CategoriesBlock extends Component {
   render() {
-    const { categories } = this.props.store.categoryStore;
-
     return (
-      <Container>
-        <CategoryPanel cols={5}>
-          {categories.map(category => (
-            <Item key={category.id}>
-              <img src={category.image} alt={category.name} />
-              <GridListTileBar
-                title={category.name}
-                // subtitle={<span>by: {category.author}</span>}
-                actionIcon={
-                  <IconButton>
-                    <InfoIcon />
-                  </IconButton>
-                }
-              />
-            </Item>
-          ))}
-        </CategoryPanel>
-      </Container>
+      <Categories>
+        <Query query={QUERY} variables={{ limit: 5 }}>
+          {({ loading, error, data }) => {
+            if (loading) return <div></div>;
+            if (error) {
+              console.log(error);
+              return <div></div>;
+            }
+            if (data) {
+              console.log(data);
+
+              return (
+                <Categories.CategoryPanel cols={5}>
+                  {data.categories.map((category) => (
+                    <Categories.Item key={category.id}>
+                      <img src={category.image} alt={category.name} />
+                      {/* <Categories.Title
+                        title={category.name}
+                        // subtitle={<span>by: {category.author}</span>}
+                        // actionIcon={
+                        //   <IconButton>
+                        //     <InfoIcon />
+                        //   </IconButton>
+                        // }
+                      /> */}
+                    </Categories.Item>
+                  ))}
+                </Categories.CategoryPanel>
+              );
+            }
+          }}
+        </Query>
+      </Categories>
     );
   }
 }
 
-export default Categories;
+export default CategoriesBlock;

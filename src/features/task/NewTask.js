@@ -12,7 +12,7 @@ class TaskPageBase extends Component {
     return (
       <NewTask>
         <NewTask.Form>
-          <NewTask.CategorySelect/>
+          <NewTask.CategorySelect />
         </NewTask.Form>
       </NewTask>
     );

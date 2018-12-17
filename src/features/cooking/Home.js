@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import { isNullOrUndefined } from 'util';
+import styled from 'styled-components';
+
 import Categories from '../../shared/components/cooking-home/Categories';
 import Products from '../../shared/components/cooking-home/Popular';
 import ProductModification from '../../shared/components/modification/ProductModification';
-import { isNullOrUndefined } from 'util';
-import styled from 'styled-components';
 
 const Container = styled.div`
   && input,

@@ -16,15 +16,7 @@ class ProductPageBase extends Component {
   render() {
     const { showProduct } = this.props.store.productStore;
 
-    return (
-      <Container>
-        {showProduct ? (
-          <Product />
-        ) : (
-          <div></div>
-        )}
-      </Container>
-    );
+    return <Container>{showProduct ? <Product /> : <div />}</Container>;
   }
 }
 

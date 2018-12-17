@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Provider } from 'mobx-react';
+import { HistoryAdapter } from 'mobx-state-router';
+// import { ApolloClient } from 'apollo-client';
+import ApolloClient from 'apollo-boost';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { RestLink } from 'apollo-link-rest';
+import { ApolloProvider } from 'react-apollo';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import gql from 'graphql-tag';
+
 import { RootStore } from './shared/stores/RootStore';
 import { UIStore } from './shared/stores/UIStore';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import { HistoryAdapter } from 'mobx-state-router';
 import { history } from './shared/utils/history';
 import Shell from './shell';
 
@@ -31,16 +38,41 @@ const uiStore = new UIStore();
 const historyAdapter = new HistoryAdapter(rootStore.routerStore, history);
 historyAdapter.observeRouterStateChanges();
 
-// @inject('store')
-// @observer
+// const restLink = new RestLink({
+//   uri: 'http://localhost:3000/graphql'
+// });
+
+const client = new ApolloClient({
+  // link: restLink,
+  uri: 'http://localhost:3000/graphql',
+  cache: new InMemoryCache({
+    dataIdFromObject: object => object.id || null
+  })
+});
+
+// client
+//   .query({
+//     query: gql `
+//       {
+//         products {
+//           name
+//           description
+//         }
+//       }
+//     `
+//   })
+//   .then(result => console.log(result));
+
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider theme={theme}>
-        <Provider store={rootStore} uiStore={uiStore}>
-          <Shell />
-        </Provider>
-      </MuiThemeProvider>
+      <ApolloProvider client={client}>
+        <MuiThemeProvider theme={theme}>
+          <Provider store={rootStore} uiStore={uiStore}>
+            <Shell />
+          </Provider>
+        </MuiThemeProvider>
+      </ApolloProvider>
     );
   }
 }

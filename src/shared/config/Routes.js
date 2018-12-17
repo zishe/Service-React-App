@@ -1,7 +1,7 @@
 export const routes = [
   {
     name: 'home',
-    pattern: '/'
+    pattern: '/home'
   },
   {
     name: 'product',
@@ -25,6 +25,6 @@ export const routes = [
   },
   {
     name: 'cooking',
-    pattern: '/cooking'
+    pattern: '/'
   }
 ];
