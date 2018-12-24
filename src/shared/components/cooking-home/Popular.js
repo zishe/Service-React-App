@@ -40,20 +40,18 @@ class Products extends Component {
         </ProductsTitle>
         <Query query={QUERY} variables={{ limit: 8 }}>
           {({ loading, error, data }) => {
-            if (loading) return <div></div>;
+            if (loading) return <div />;
             if (error) {
               console.log(error);
-              return <div></div>;
+              return <div />;
             }
             if (data) {
               console.log(data);
-              return (
-                <ProductList products={data.products} />
-                );
-              }
-            }}
-          </Query>
-        </Container>
+              return <ProductList products={data.products} />;
+            }
+          }}
+        </Query>
+      </Container>
     );
   }
 }

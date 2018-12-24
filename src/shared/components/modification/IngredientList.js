@@ -1,64 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
-import styled from 'styled-components';
-import IngredientTypeSelect from './IngredientTypeSelect';
-import Select from 'react-select';
-import { Typography } from '@material-ui/core';
-
-const Ingredients = styled.div`
-  && {
-    width: 650px;
-  }
-  * {
-    font-family: 'Roboto' !important;
-  }
-`;
-
-const IngredientType = styled(IngredientTypeSelect)`
-  && {
-    flex: 2;
-    overflow: visible;
-  }
-`;
-
-const Ingredient = styled.div`
-  && {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    height: 70px;
-    overflow: visible;
-  }
-`;
-
-const Tags = styled(Select)`
-  && {
-    ::before {
-      display: none;
-    }
-    margin-left: 20px;
-    flex: 4;
-  }
-`;
-
-const IngredientName = styled(Typography)`
-  && {
-    flex: 1;
-  }
-`;
-
-const Option = styled(Typography)`
-  && {
-  }
-`;
-
-const TypePlaceholder = styled(Typography)`
-  && {
-  }
-`;
+import Ingredients from './ingredient-list';
 
 @inject('store')
 @observer
@@ -75,11 +18,11 @@ class IngredientList extends Component {
   };
 
   renderOption = option => {
-    return <Option>{option.label}</Option>;
+    return <Ingredients.Option>{option.label}</Ingredients.Option>;
   };
 
   renderValue = option => {
-    return <TypePlaceholder>{option.label}</TypePlaceholder>;
+    return <Ingredients.TypePlaceholder>{option.label}</Ingredients.TypePlaceholder>;
   };
 
   render() {
@@ -96,10 +39,10 @@ class IngredientList extends Component {
             // console.log(ingredient.tags.map((x) => { return {value: x.id, label: x.name } }));
 
             return (
-              <Ingredient key={ingredient.id}>
-                <IngredientName>{ingredient.name}</IngredientName>
-                <IngredientType ingredient={ingredient} />
-                <Tags
+              <Ingredients.Ingredient key={ingredient.id}>
+                <Ingredients.Name>{ingredient.name}</Ingredients.Name>
+                <Ingredients.Type ingredient={ingredient} />
+                <Ingredients.Tags
                   value={store.productStore.ingredientsModification[ingredient.id]?.tags}
                   onChange={selectedItems => this.handleChangeTags(ingredient, selectedItems)}
                   placeholder="Другое"
@@ -110,7 +53,7 @@ class IngredientList extends Component {
                   noResultsText="Пусто"
                   valueRenderer={this.renderValue}
                 />
-              </Ingredient>
+              </Ingredients.Ingredient>
             );
           })}
       </Ingredients>

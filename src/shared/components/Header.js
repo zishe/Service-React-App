@@ -91,7 +91,7 @@ const AutocompleteInput = styled.input`
 
 @inject('store')
 @observer
-export class Header extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
     this.search = React.createRef();
@@ -129,3 +129,5 @@ export class Header extends React.Component {
     );
   }
 }
+
+export default Header;

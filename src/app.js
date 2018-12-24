@@ -38,30 +38,12 @@ const uiStore = new UIStore();
 const historyAdapter = new HistoryAdapter(rootStore.routerStore, history);
 historyAdapter.observeRouterStateChanges();
 
-// const restLink = new RestLink({
-//   uri: 'http://localhost:3000/graphql'
-// });
-
 const client = new ApolloClient({
-  // link: restLink,
   uri: 'http://localhost:3000/graphql',
   cache: new InMemoryCache({
     dataIdFromObject: object => object.id || null
   })
 });
-
-// client
-//   .query({
-//     query: gql `
-//       {
-//         products {
-//           name
-//           description
-//         }
-//       }
-//     `
-//   })
-//   .then(result => console.log(result));
 
 class App extends Component {
   render() {

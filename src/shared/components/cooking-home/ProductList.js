@@ -3,7 +3,6 @@ import { observer, inject } from 'mobx-react';
 import { Typography } from '@material-ui/core';
 import Products from './popularProducts';
 
-
 @inject('store')
 // @inject('uiStore')
 @observer
@@ -27,7 +26,7 @@ class ProductList extends Component {
   handleAddToCart = (e, product) => {
     this.props.store.shoppingCartStore.addProduct(product);
     e.preventDefault();
-  }
+  };
 
   render() {
     const { products } = this.props;
@@ -64,11 +63,11 @@ class ProductList extends Component {
               <Products.AddButton
                 aria-label="Добавить в корзину"
                 align="left"
-                onClick={e => { return this.handleAddToCart(e, product); }}
+                onClick={e => {
+                  return this.handleAddToCart(e, product);
+                }}
               >
-                <Products.AddToShoppingCart
-                  color="primary"
-                />
+                <Products.AddToShoppingCart color="primary" />
               </Products.AddButton>
               <Typography variant="body1" gutterBottom align="left" style={{ paddingRight: 20 }}>
                 {this.inCart(product)}

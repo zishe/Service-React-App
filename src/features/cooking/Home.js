@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Categories from '../../shared/components/cooking-home/Categories';
 import Products from '../../shared/components/cooking-home/Popular';
 import ProductModification from '../../shared/components/modification/ProductModification';
+import Header from '../../shared/components/Header';
 
 const Container = styled.div`
   && input,
@@ -26,6 +27,7 @@ class HomePageBase extends Component {
 
     return (
       <Container>
+        <Header />
         <Categories />
         <Products />
         {!isNullOrUndefined(store.productStore.modifyingProduct) && (

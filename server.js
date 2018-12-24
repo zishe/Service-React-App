@@ -1,8 +1,8 @@
-const App = require('./public/static/server/app').App;
+const App = require('./public/server/app').App;
 const express = require('express');
 const app = express();
 
-app.use(express.static('public/static/client'));
+app.use(express.static('public/client'));
 
 app.get('/favicon.ico', function(req, res) {
     res.status(204);

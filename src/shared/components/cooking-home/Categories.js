@@ -23,17 +23,17 @@ class CategoriesBlock extends Component {
       <Categories>
         <Query query={QUERY} variables={{ limit: 5 }}>
           {({ loading, error, data }) => {
-            if (loading) return <div></div>;
+            if (loading) return <div />;
             if (error) {
               console.log(error);
-              return <div></div>;
+              return <div />;
             }
             if (data) {
               console.log(data);
 
               return (
                 <Categories.CategoryPanel cols={5}>
-                  {data.categories.map((category) => (
+                  {data.categories.map(category => (
                     <Categories.Item key={category.id}>
                       <img src={category.image} alt={category.name} />
                       {/* <Categories.Title
