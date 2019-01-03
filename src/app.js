@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Provider } from 'mobx-react';
 import { HistoryAdapter } from 'mobx-state-router';
-// import { ApolloClient } from 'apollo-client';
 import ApolloClient from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { RestLink } from 'apollo-link-rest';
 import { ApolloProvider } from 'react-apollo';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import gql from 'graphql-tag';
 
 import { RootStore } from './shared/stores/RootStore';
 import { UIStore } from './shared/stores/UIStore';

@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { Typography, AppBar, Toolbar, IconButton, Button, Badge } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import { ShoppingCart } from './ShoppingCart/ShoppingCart';
+import ShoppingCart from './ShoppingCart/ShoppingCart';
 
 const MenuButton = styled(IconButton)`
   && {
@@ -98,6 +98,7 @@ class Header extends React.Component {
   }
 
   onFocus = () => {};
+
   render() {
     return (
       <Wrapper>
@@ -117,7 +118,7 @@ class Header extends React.Component {
             </SearchBar>
             <Badge
               style={{ marginRight: 10 }}
-              badgeContent={this.props.store.shoppingCartStore.size}
+              // badgeContent={this.props.store.shoppingCartStore.size}
               color="primary"
             >
               <ShoppingCart />
